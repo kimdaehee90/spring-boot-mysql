@@ -20,6 +20,8 @@ public class Author {
     private String firstName;
     private String lastName;
 
+    // cascade의 경우 ALL만 기억이 나서 다른 전략은 잘 기억이 안나네요
+    // fetch의 경우 다른 점은 알겠는데 언제 어떤걸 써야하는지 잘 모르겠네요
     @JsonBackReference
     @OneToMany(mappedBy = "author",
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
