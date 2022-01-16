@@ -1,6 +1,7 @@
 package com.covenant.springbootmysql.controller;
 
 import com.covenant.springbootmysql.model.Book;
+import com.covenant.springbootmysql.model.request.BookCreationRequest;
 import com.covenant.springbootmysql.service.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class LibraryController {
     @GetMapping("/book/{bookId}")
     public ResponseEntity<Book> readBook (@PathVariable Long bookId) {
         return ResponseEntity.ok(libraryService.readBook(bookId));
+    }
+
+    // book 생성
+    @PostMapping("/book")
+    public ResponseEntity<Book> createBook (@RequestBody BookCreationRequest request) {
+        return ResponseEntity.ok(libraryService.createBook(request));
     }
 
 }
