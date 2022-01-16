@@ -2,7 +2,9 @@ package com.covenant.springbootmysql.service;
 
 import com.covenant.springbootmysql.model.Author;
 import com.covenant.springbootmysql.model.Book;
+import com.covenant.springbootmysql.model.Member;
 import com.covenant.springbootmysql.model.request.BookCreationRequest;
+import com.covenant.springbootmysql.model.request.MemberCreationRequest;
 import com.covenant.springbootmysql.repository.AuthorRepository;
 import com.covenant.springbootmysql.repository.BookRepository;
 import com.covenant.springbootmysql.repository.LendRepository;
@@ -65,5 +67,12 @@ public class LibraryService {
     // book을 삭제하기
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    // member 생성하기
+    public Member createMember(MemberCreationRequest request) {
+        Member member = new Member();
+        BeanUtils.copyProperties(request, member);
+        return memberRepository.save(member);
     }
 }
