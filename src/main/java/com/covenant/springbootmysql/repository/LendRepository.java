@@ -1,4 +1,4 @@
-package com.springbootmysql.repository;
+package com.covenant.springbootmysql.repository;
 
 import com.covenant.springbootmysql.model.Book;
 import com.covenant.springbootmysql.model.Lend;
