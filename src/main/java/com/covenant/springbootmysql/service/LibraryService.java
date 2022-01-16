@@ -3,6 +3,7 @@ package com.covenant.springbootmysql.service;
 import com.covenant.springbootmysql.model.Author;
 import com.covenant.springbootmysql.model.Book;
 import com.covenant.springbootmysql.model.Member;
+import com.covenant.springbootmysql.model.request.AuthorCreationRequest;
 import com.covenant.springbootmysql.model.request.BookCreationRequest;
 import com.covenant.springbootmysql.model.request.MemberCreationRequest;
 import com.covenant.springbootmysql.repository.AuthorRepository;
@@ -88,5 +89,12 @@ public class LibraryService {
         member.setLastName(request.getLastName());
         member.setFirstName(request.getFirstName());
         return memberRepository.save(member);
+    }
+
+    // author 생성하기
+    public Author createAuthor (AuthorCreationRequest request) {
+        Author author = new Author();
+        BeanUtils.copyProperties(request, author);
+        return authorRepository.save(author);
     }
 }
