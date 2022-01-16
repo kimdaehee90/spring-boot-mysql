@@ -1,7 +1,9 @@
 package com.covenant.springbootmysql.controller;
 
+import com.covenant.springbootmysql.model.Author;
 import com.covenant.springbootmysql.model.Book;
 import com.covenant.springbootmysql.model.Member;
+import com.covenant.springbootmysql.model.request.AuthorCreationRequest;
 import com.covenant.springbootmysql.model.request.BookCreationRequest;
 import com.covenant.springbootmysql.model.request.BookLendRequest;
 import com.covenant.springbootmysql.model.request.MemberCreationRequest;
@@ -68,5 +70,11 @@ public class LibraryController {
     @PostMapping("/book/lend")
     public ResponseEntity<List<String>> lendABook(@RequestBody BookLendRequest bookLendRequests) {
         return ResponseEntity.ok(libraryService.lendABook(bookLendRequests));
+    }
+
+    // author 생성
+    @PostMapping("/author")
+    public ResponseEntity<Author> createAuthor (@RequestBody AuthorCreationRequest request) {
+        return ResponseEntity.ok(libraryService.createAuthor(request));
     }
 }
