@@ -3,11 +3,14 @@ package com.covenant.springbootmysql.controller;
 import com.covenant.springbootmysql.model.Book;
 import com.covenant.springbootmysql.model.Member;
 import com.covenant.springbootmysql.model.request.BookCreationRequest;
+import com.covenant.springbootmysql.model.request.BookLendRequest;
 import com.covenant.springbootmysql.model.request.MemberCreationRequest;
 import com.covenant.springbootmysql.service.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/library")
@@ -58,5 +61,12 @@ public class LibraryController {
     @PatchMapping("/member/{memberId}")
     public ResponseEntity<Member> updateMember (@RequestBody MemberCreationRequest request, @PathVariable Long memberId) {
         return ResponseEntity.ok(libraryService.updateMember(memberId, request));
+    }
+
+    // 대출 api
+    // lendBook 이해 못함
+    @PostMapping("/book/lend")
+    public ResponseEntity<List<String>> lendABook(@RequestBody BookLendRequest bookLendRequests) {
+        return ResponseEntity.ok(libraryService.lendABook(bookLendRequests));
     }
 }
