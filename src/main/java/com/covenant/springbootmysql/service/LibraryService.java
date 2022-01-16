@@ -75,4 +75,18 @@ public class LibraryService {
         BeanUtils.copyProperties(request, member);
         return memberRepository.save(member);
     }
+
+    // member 정보 update 하기
+    public Member updateMember (Long id, MemberCreationRequest request) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+        if (!optionalMember.isPresent()) {
+            throw new EntityNotFoundException(
+                    "Member not present in the database");
+        }
+
+        Member member = optionalMember.get();
+        member.setLastName(request.getLastName());
+        member.setFirstName(request.getFirstName());
+        return memberRepository.save(member);
+    }
 }
