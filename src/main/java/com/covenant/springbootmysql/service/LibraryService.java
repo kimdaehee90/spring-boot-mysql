@@ -61,4 +61,9 @@ public class LibraryService {
         bookToCreate.setAuthor(author.get());
         return bookRepository.save(bookToCreate);
     }
+
+    // book을 삭제하기
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 }
