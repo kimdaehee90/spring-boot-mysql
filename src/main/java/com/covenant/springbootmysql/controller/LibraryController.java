@@ -1,7 +1,9 @@
 package com.covenant.springbootmysql.controller;
 
 import com.covenant.springbootmysql.model.Book;
+import com.covenant.springbootmysql.model.Member;
 import com.covenant.springbootmysql.model.request.BookCreationRequest;
+import com.covenant.springbootmysql.model.request.MemberCreationRequest;
 import com.covenant.springbootmysql.service.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +46,11 @@ public class LibraryController {
     public ResponseEntity<Void> deleteBook (@PathVariable Long bookId) {
         libraryService.deleteBook(bookId);
         return ResponseEntity.ok().build();
+    }
+
+    // member 생성
+    @PostMapping("/member")
+    public ResponseEntity<Member> createMember (@RequestBody MemberCreationRequest request) {
+        return ResponseEntity.ok(libraryService.createMember(request));
     }
 }
