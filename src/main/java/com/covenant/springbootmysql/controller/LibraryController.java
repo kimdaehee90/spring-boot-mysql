@@ -39,4 +39,10 @@ public class LibraryController {
         return ResponseEntity.ok(libraryService.createBook(request));
     }
 
+    // book 삭제
+    @DeleteMapping("/book/{bookId}")
+    public ResponseEntity<Void> deleteBook (@PathVariable Long bookId) {
+        libraryService.deleteBook(bookId);
+        return ResponseEntity.ok().build();
+    }
 }
