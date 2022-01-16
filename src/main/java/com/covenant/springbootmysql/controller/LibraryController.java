@@ -1,12 +1,10 @@
 package com.covenant.springbootmysql.controller;
 
+import com.covenant.springbootmysql.model.Book;
 import com.covenant.springbootmysql.service.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/library")
@@ -28,5 +26,10 @@ public class LibraryController {
         return ResponseEntity.ok(libraryService.readBook(isbn));
     }
 
+    // bookId로 조회
+    @GetMapping("/book/{bookId}")
+    public ResponseEntity<Book> readBook (@PathVariable Long bookId) {
+        return ResponseEntity.ok(libraryService.readBook(bookId));
+    }
 
 }
