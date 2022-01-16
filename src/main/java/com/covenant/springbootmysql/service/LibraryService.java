@@ -27,12 +27,20 @@ public class LibraryService {
         if (book.isPresent()) {
             return book.get();
         }
-        throw new EntityNotFoundException(
-                "Cant find any book under given ID");
+        throw new EntityNotFoundException("Cant find any book under given ID");
     }
 
     // 모든 book 조회
     public List<Book> readBooks(){
         return bookRepository.findAll();
+    }
+
+    // isbn으로 book 조회하기
+    public Book readBook(String isbn){
+        Optional<Book> book = bookRepository.findByIsbn(isbn);
+        if(book.isPresent()){
+            return book.get();
+        }
+        throw new EntityNotFoundException("Cant find any book under given ISBN");
     }
 }
